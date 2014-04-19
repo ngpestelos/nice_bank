@@ -40,7 +40,7 @@ get '/' do
     <body>
       <form action="/withdraw" method="post">
         <label for="amount">Amount</label>
-        <input type="text" id="amount" name="amount">
+        <input type="text" id="amount" name="amount" value="$20">
         <button type="submit">Withdraw</button>
       </form>
     </body>
