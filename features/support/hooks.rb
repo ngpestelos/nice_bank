@@ -3,5 +3,6 @@ Before do
 end
 
 After do |scenario|
-  save_and_open_page if scenario.failed?
+  #save_and_open_page if scenario.failed?
+  Sinatra::Application.cash_slot = CashSlot.new
 end

@@ -18,14 +18,16 @@ class Teller
   end
 
   def withdraw_from(account, amount)
-    account.debit(amount)
-    @cash_slot.dispense(amount)
+    if account.balance >= amount
+      account.debit(amount)
+      return @cash_slot.dispense(amount)
+    end
   end
 end
 
 class CashSlot
   def contents
-    @contents or raise("I'm empty!")
+    @contents
   end
 
   def dispense(amount)
@@ -54,5 +56,6 @@ set :account do
 end
 post '/withdraw' do
   teller = Teller.new(settings.cash_slot)
-  teller.withdraw_from(settings.account, params[:amount].to_i)
+  dispensed = teller.withdraw_from(settings.account, params[:amount].to_i)
+  "<p>You have insufficient funds in your account.</p>" if dispensed.nil?
 end

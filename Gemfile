@@ -7,4 +7,5 @@ group :development do
   gem 'cucumber', '1.3.14'
   gem 'capybara', '2.2.1'
   gem 'launchy'
+  gem 'pry'
 end
